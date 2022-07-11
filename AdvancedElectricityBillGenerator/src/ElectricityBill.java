@@ -24,13 +24,42 @@ public class ElectricityBill {
         System.out.println("");
         System.out.println("Data for " + costumer_name + ": ");
         System.out.println("Costumer id: " + costumer_id);
-        System.out.println("Phase" + phase);
-        System.out.println("Unit Cosumed" + unit_consumed);
-        System.out.println("Contact Number" + contact_no);
-        System.out.println("Prime Costumer" + prime_costumer);
-        System.out.println("Date unit taken" + date_unit_taken);
+        System.out.println("Phase: " + phase);
+        System.out.println("Unit Cosumed: " + unit_consumed);
+        System.out.println("Contact Number: " + contact_no);
+        System.out.println("Prime Costumer: " + prime_costumer);
+        System.out.println("Date unit taken: " + date_unit_taken);
         System.out.println("====================");
 
     }
+
+    boolean isPrimeCustomer(){
+        return this.prime_costumer;
+    }
+
+    void setPrimeCustomer(boolean var){
+        this.prime_costumer = var;
+    }
+
+    String getCostumer_name(){
+        return this.costumer_name;
+    }
+
+    String getDate(){
+        return this.date_unit_taken;
+    }
+
+    long getCustomer_id(){
+        return this.costumer_id;
+    }
+
+    String getStringPhase(){
+        return this.phase + " PH";
+    }
+
+    double getUnitConsumed(){
+        return this.unit_consumed;
+    }
+    
 
 }

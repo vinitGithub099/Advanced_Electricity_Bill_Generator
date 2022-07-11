@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
-
+import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class App {
     public static void main(String[] args) {
@@ -40,9 +43,20 @@ public class App {
                 prime_costumer = Boolean.parseBoolean(ssplit[6]);
 
 
-                ElectricityBill ele = new ElectricityBill(costumer_id, unit_consumed, phase, costumer_name,
-                        date_unit_taken, contact_no, prime_costumer);
+                ElectricityBill ele = new ElectricityBill(costumer_id, unit_consumed, phase, costumer_name, date_unit_taken, contact_no, prime_costumer);
+                // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");        
+                // System.out.println(LocalDate.parse(ele.getDate(), formatter)); 
+                // LocalDate mydate = LocalDate.parse(ele.getDate(), formatter);
+                ElectricBillPrint obj = new ElectricBillPrint(ele.getStringPhase(), ele.getUnitConsumed(), ele.getDate());
                         
+Scanner sc = new Scanner(System.in);
+                System.out.println("Enter Coupen Code");
+ String coupenString = sc.nextLine();
+obj.Coupon(coupenString);
+
+obj.PrintBill();
+
+
                 aBills.add(ele);
             }
 
@@ -53,9 +67,9 @@ public class App {
             e.printStackTrace();
         }
 
-        for (ElectricityBill e : aBills) {
-            e.display_data();
-        }
+        // for (ElectricityBill e : aBills) {
+        //     e.display_data();
+        // }
 
     }
 }
