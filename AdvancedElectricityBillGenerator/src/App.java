@@ -100,7 +100,7 @@ public class App {
                 } else {
                     System.out.println();
                 }
-                obj.PrintBill();
+                obj.PrintBill(ele);
             }
             
         }

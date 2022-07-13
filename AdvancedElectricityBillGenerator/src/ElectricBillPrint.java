@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public class ElectricBillPrint {
+public class ElectricBillPrint extends ElectricityBill{
     double ElectricUnit;
     // double solarUnits;
     int FixedCharge = 115;
@@ -16,6 +16,7 @@ public class ElectricBillPrint {
 
 
     ElectricBillPrint(String phase, double ElectricUnit, String stringdate, double solarUnits) {
+        super();
         this.Phase = phase;
         this.ElectricUnit = ElectricUnit - solarUnits;
         this.StringDate = stringdate;
@@ -75,18 +76,17 @@ public class ElectricBillPrint {
     // }
 
     // class PrintBill{
-    void PrintBill() {
+    void PrintBill(ElectricityBill obj) {
         System.out.println();
         System.out.println();
         System.out.println("*********Electric Bill**********");
-        // System.out.println("Customer Name: "+ Name);
-        // System.out.println("Customer ID: "+ ID);
-        // System.out.println("Billing Month: " + Month);
-        // System.out.println("Date Of Reading: "+Date);
+        System.out.println("Customer Name: "+ obj.getCostumer_name());
+        System.out.println("Customer ID: "+ obj.getCustomer_id());
+        System.out.println("Date Of Reading: "+ obj.getDate());
         System.out.println("=================================");
-        System.out.println("Total Unit Consumed : " + ElectricUnit + " units");
-        System.out.println("Amount(Before Tax) : INR " + Price);
-        System.out.println("Amount(After Tax) : INR " + NetPrice);
+        System.out.println("Total Unit Consumed : " + String.format("%.2f", ElectricUnit) + " units");
+        System.out.println("Amount(Before Tax) : INR " + String.format("%.2f", Price));
+        System.out.println("Amount(After Tax) : INR " + String.format("%.2f", NetPrice));
         if (i == 1)
             System.out.println("Coupon Applied : YES");
         else

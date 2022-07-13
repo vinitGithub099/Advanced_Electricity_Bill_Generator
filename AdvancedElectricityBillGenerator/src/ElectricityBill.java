@@ -12,6 +12,8 @@ public class ElectricityBill {
     private boolean prime_costumer;
     private double solar_units;
 
+    public ElectricityBill(){}
+
     // contructor
     public ElectricityBill(long costumer_id, double unit_consumed, int phase, String costumer_name, String unit_taken, int contact_no, boolean prime_costumer) {
         this.costumer_id = costumer_id;
@@ -72,18 +74,18 @@ public class ElectricityBill {
         return this.solar_units;
     }
 
-    public void display(ArrayList<ElectricityBill> aBills) {
-        System.out.println("Enter Costumer id");
-        Scanner sc = new Scanner(System.in);
+    // public void display(ArrayList<ElectricityBill> aBills) {
+    //     System.out.println("Enter Costumer id");
+    //     Scanner sc = new Scanner(System.in);
 
-        long cid = sc.nextLong();
-        boolean available_costumer = false;
-        for (ElectricityBill ele : aBills) {
-            if (cid == ele.getCustomer_id()) {
-                ElectricBillPrint obj = new ElectricBillPrint(ele.getStringPhase(), ele.getUnitConsumed(),
-                        ele.getDate(), ele.getSolarUnits());
-                obj.PrintBill();
-            }
-        }
-    }
+    //     long cid = sc.nextLong();
+    //     boolean available_costumer = false;
+    //     for (ElectricityBill ele : aBills) {
+    //         if (cid == ele.getCustomer_id()) {
+    //             ElectricBillPrint obj = new ElectricBillPrint(ele.getStringPhase(), ele.getUnitConsumed(),
+    //                     ele.getDate(), ele.getSolarUnits());
+    //             obj.PrintBill(ele);
+    //         }
+    //     }
+    // }
 }
