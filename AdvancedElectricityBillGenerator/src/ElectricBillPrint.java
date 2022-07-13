@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ElectricBillPrint {
     double ElectricUnit;
+    // double solarUnits;
     int FixedCharge = 115;
     public Double Price, NetPrice;
     LocalDate DateOfReading;
@@ -13,10 +14,12 @@ public class ElectricBillPrint {
     final float TAX = ElectricDuty + WheelingCharges;
     String Phase, StringDate;
 
-    ElectricBillPrint(String phase, double ElectricUnit, String stringdate) {
+
+    ElectricBillPrint(String phase, double ElectricUnit, String stringdate, double solarUnits) {
         this.Phase = phase;
-        this.ElectricUnit = ElectricUnit;
+        this.ElectricUnit = ElectricUnit - solarUnits;
         this.StringDate = stringdate;
+        // this.solarUnits = solarUnits;
         // this.DateOfReading = dor;
         BillCalculator();
     }
@@ -24,19 +27,19 @@ public class ElectricBillPrint {
     void BillCalculator() {
         if (ElectricUnit > 100 && Phase.equals("1 PH")) {
             Price = FixedCharge + (3.5 * 100) + (7.5 * (ElectricUnit - 100));
-            NetPrice = Price - Price * TAX;
+            NetPrice = Price + Price * TAX;
         } else if (ElectricUnit > 100 && Phase.equals("3 PH")) {
             Price = FixedCharge + (5.5 * 100) + (9.5 * (ElectricUnit - 100));
-            NetPrice = Price - Price * TAX;
+            NetPrice = Price + Price * TAX;
         } else if (ElectricUnit < 100 && Phase.equals("1 PH")) {
             Price = FixedCharge + (3.5 * ElectricUnit);
-            NetPrice = Price - Price * TAX;
+            NetPrice = Price + Price * TAX;
         } else if (ElectricUnit < 100 && Phase.equals("3 PH")) {
             Price = FixedCharge + (5.5 * ElectricUnit);
-            NetPrice = Price - Price * TAX;
+            NetPrice = Price + Price * TAX;
         } else {
             Price = (double) FixedCharge;
-            NetPrice = Price - Price * TAX;
+            NetPrice = Price + Price * TAX;
         }
         DateOfReading = LocalDate.parse(StringDate, fd);
         int days = Period.between(curr, this.DateOfReading).getDays();
@@ -47,28 +50,22 @@ public class ElectricBillPrint {
     }
     // }
 
-    // class Incentives extends ElectricBillPrint{
     // //For Validation Coupon
     int i = 0;
-
-    // public Incentives(){
-
-    // }
-
-    // Prime Subscription
     void PrimeSubscription(int CodeNo) {
         if (CodeNo > 1000 && CodeNo < 2000 && (CodeNo % 10 == 0)) {
+            System.out.println("Prime Code Applied Successfully");
             NetPrice = NetPrice - NetPrice * 0.2;
         } else
-            System.out.println("Invalid Code");
+            System.out.println("============Invalid Code: You are not a prime subscriber!============");
     }
 
     // Coupon
     void Coupon(String CouponCode) {
-        if (NetPrice >= 10000 && CouponCode == "LUCKY20") {
+        if (NetPrice >= 10000 && CouponCode.equals("LUCKY20")) {
             i = 1;
             System.out.println("Total Bill Payable: INR" + (NetPrice - (NetPrice * 0.2)));
-        } else if (NetPrice >= 5000 && CouponCode == "SPECIAL10") {
+        } else if (NetPrice >= 5000 && CouponCode.equals("SPECIAL10")) {
             i = 1;
             System.out.println("Total Bill Payable: INR" + (NetPrice - (NetPrice * 0.1)));
         } else {

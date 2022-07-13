@@ -1,4 +1,6 @@
 // package ElectricityBIllGenerator;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ElectricityBill {
     private long costumer_id;
@@ -8,6 +10,7 @@ public class ElectricityBill {
     private String date_unit_taken;
     private int contact_no;
     private boolean prime_costumer;
+    private double solar_units;
 
     // contructor
     public ElectricityBill(long costumer_id, double unit_consumed, int phase, String costumer_name, String unit_taken, int contact_no, boolean prime_costumer) {
@@ -60,6 +63,27 @@ public class ElectricityBill {
     double getUnitConsumed(){
         return this.unit_consumed;
     }
-    
 
+    void setSolarUnits(double units){
+        this.solar_units = units;
+    }
+    
+    double getSolarUnits(){
+        return this.solar_units;
+    }
+
+    public void display(ArrayList<ElectricityBill> aBills) {
+        System.out.println("Enter Costumer id");
+        Scanner sc = new Scanner(System.in);
+
+        long cid = sc.nextLong();
+        boolean available_costumer = false;
+        for (ElectricityBill ele : aBills) {
+            if (cid == ele.getCustomer_id()) {
+                ElectricBillPrint obj = new ElectricBillPrint(ele.getStringPhase(), ele.getUnitConsumed(),
+                        ele.getDate(), ele.getSolarUnits());
+                obj.PrintBill();
+            }
+        }
+    }
 }
