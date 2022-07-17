@@ -91,7 +91,7 @@ public class ElectricBillPrint extends ElectricityBill{
             System.out.println("Coupon Applied : YES");
         else
             System.out.println("Coupon Applied : NO");
-        System.out.println("Total Payable Amount: INR " + NetPrice);
+        System.out.println("Total Payable Amount: INR " + String.format("%.2f", NetPrice));
         System.out.println("=================================");
         System.out.println("Charges & Tax :- ");
         System.out.println("Fixed Charges(FC) : INR " + FixedCharge);

@@ -12,6 +12,7 @@ public class ElectricityBill {
     private boolean prime_costumer;
     private double solar_units;
 
+    //Empty Constructor
     public ElectricityBill(){}
 
     // contructor
@@ -74,18 +75,5 @@ public class ElectricityBill {
         return this.solar_units;
     }
 
-    // public void display(ArrayList<ElectricityBill> aBills) {
-    //     System.out.println("Enter Costumer id");
-    //     Scanner sc = new Scanner(System.in);
 
-    //     long cid = sc.nextLong();
-    //     boolean available_costumer = false;
-    //     for (ElectricityBill ele : aBills) {
-    //         if (cid == ele.getCustomer_id()) {
-    //             ElectricBillPrint obj = new ElectricBillPrint(ele.getStringPhase(), ele.getUnitConsumed(),
-    //                     ele.getDate(), ele.getSolarUnits());
-    //             obj.PrintBill(ele);
-    //         }
-    //     }
-    // }
 }

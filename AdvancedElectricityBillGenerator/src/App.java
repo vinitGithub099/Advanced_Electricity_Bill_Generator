@@ -2,9 +2,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-interface display_iface {
-    void display(ArrayList<ElectricityBill> a);
-}
 
 public class App {
     public static void main(String[] args) {
@@ -92,7 +89,7 @@ public class App {
                 System.out.println();
                 System.out.print("Are you a Prime Subscriber ? [y/n] : ");
                 choice = sc.next();
-                if (c.equals("y") || c.equals("Y")) {
+                if (choice.equals("y") || choice.equals("Y")) {
                     System.out.println();
                     System.out.print("Enter your prime subscription code [int]: ");
                     primeCode = sc.nextInt();
